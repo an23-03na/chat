@@ -33,7 +33,7 @@ export const verify = async (req: Request, res: Response) => {
 
     if (user) {
       generateToken(user.id, res);
-      return res.redirect("http://localhost:3000?verify");
+      return res.redirect(`${process.env.FRONTEND_URL}?verify`);
     } else {
       return res.status(400).json("user not created");
     }

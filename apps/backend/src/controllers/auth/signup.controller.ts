@@ -50,7 +50,7 @@ export const signup = async (req: Request, res: Response) => {
       await sendEmail({
         to: data.email,
         subject: "Verification",
-        html: `<a href="http://localhost:5555/api/auth/verify?code=${code}">verify</a>`,
+        html: `<a href="${process.env.API_URL}/api/auth/verify?code=${code}">verify</a>`,
       });
       return res.status(201).json({ message: "success register" });
     } else {
