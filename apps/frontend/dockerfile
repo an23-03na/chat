@@ -2,12 +2,12 @@ FROM node:20-alpine AS deps
 
 WORKDIR /app
 
-COPY frontend/package*.json ./
-RUN npm install
+COPY apps/frontend/package*.json ./
+RUN pnpm install
 
-COPY frontend .
+COPY apps/frontend .
 
-RUN npm run build
+RUN pnpm run build
 
 EXPOSE 3000
 
