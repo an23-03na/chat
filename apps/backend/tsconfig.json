@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "node20",           // ваш текущий вариант — ок для новых версий TS (5.x+)
+    "target": "ES2022",           // до какой версии JS компилировать
+    "lib": ["ES2022"],            // доступные встроенные типы (Promise, Map и т.д.)
+
+    "strict": true,               // включает строгую проверку типов — сильно помогает автодополнению
+    "esModuleInterop": true,      // нормальный импорт CommonJS модулей (express, socket.io и т.д.)
+    "skipLibCheck": true,         // не проверять типы внутри node_modules (ускоряет и убирает лишние ошибки)
+    "forceConsistentCasingInFileNames": true,
+
+    "resolveJsonModule": true,    // разрешить импорт .json файлов
+    "moduleDetection": "force",   // каждый файл считается модулем (важно для import/export)
+
+    "outDir": "dist",             // куда компилировать
+    "rootDir": "src",             // где лежат исходники
+
+    "declaration": false,
+    "sourceMap": true
+  },
+  "include": ["src/**/*"],        // ⚠️ без этого VSCode может не подхватывать весь проект
+  "exclude": ["node_modules", "dist"]
+}

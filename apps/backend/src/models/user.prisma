@@ -1,0 +1,23 @@
+model User {
+  id         String  @id @default(cuid())
+  avatar     String?
+  name       String
+  userName   String? @unique
+  email      String  @unique
+  phone      String  @unique
+  password   String?
+  provider   String?
+  providerId String?
+
+  verified DateTime?
+
+  sentMessage     Message[]    @relation("sender")
+  receivedMessage Message[]    @relation("receiver")
+  chat            Chat[]
+  chatMembers     ChatMember[]
+
+  verificationCode VerificationCode?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
