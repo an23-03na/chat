@@ -45,10 +45,10 @@ export const useAuth = () => {
     await axiosInstance.post(ApiRoutes.SIGNUP, data);
   };
   const login = async (data: any) => {
-    const res = (await axiosInstance.post(ApiRoutes.LOGIN, data)).data;
-    mutate(res.data, false);
-    socketConnect(res.data);
-  };
+  const user = (await axiosInstance.post(ApiRoutes.LOGIN, data)).data;
+  mutate(user, false);
+  socketConnect(user);
+};
   const logout = async () => {
     await axiosInstance.post(ApiRoutes.LOGOUT);
     mutate(null, false);
