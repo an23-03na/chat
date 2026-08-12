@@ -13,7 +13,7 @@ export const useAuth = () => {
       return;
     }
 
-    const newSocket = io(process.env.NEXT_PUBLIC_SOCKET_URL, {
+    const newSocket = io(process.env.NEXT_PUBLIC_SOCKET_URL!, {
       query: { userId: user.id },
     });
 
@@ -44,19 +44,20 @@ export const useAuth = () => {
   const signup = async (data: any) => {
     await axiosInstance.post(ApiRoutes.SIGNUP, data);
   };
+
   const login = async (data: any) => {
-  const user = (await axiosInstance.post(ApiRoutes.LOGIN, data)).data;
-  mutate(user, false);
-  socketConnect(user);
-};
+    const user = (await axiosInstance.post(ApiRoutes.LOGIN, data)).data;
+    mutate(user, false);
+    socketConnect(user);
+  };
   const logout = async () => {
     await axiosInstance.post(ApiRoutes.LOGOUT);
     mutate(null, false);
     socketDisconnect();
   };
   const updateProfile = async (data: any) => {
-    const res = (await axiosInstance.patch(ApiRoutes.ME, data)).data;
-    mutate(res.data, false);
+    const user = (await axiosInstance.patch(ApiRoutes.ME, data)).data;
+    mutate(user, false);
   };
 
   return {
