@@ -16,9 +16,6 @@ const verify = async (req, res) => {
         if (!verificationCode) {
             return res.status(400).json({ message: "code not found" });
         }
-        await prisma_client_1.prisma.verificationCode.delete({
-            where: { userId: verificationCode.user.id },
-        });
         const user = await prisma_client_1.prisma.user.update({
             where: { id: verificationCode.user.id },
             data: { verified: new Date() },
